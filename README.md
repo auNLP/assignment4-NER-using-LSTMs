@@ -4,26 +4,19 @@
 # Summary
 
 <!-- 
-This should include a short description of which models you have tried and conclusions from comparing these models. It should also include an argument This should be no longer than an abstract. This section can also include questions regarding the assignment.
+This should include a short description of which models you have tried and conclusions from comparing these models. This should be no longer than an abstract. This section can also include questions regarding the assignment.
 -->
 
 # Performance
 <!-- 
-This should include a table of performance metrics of different models. The table should at least include the performance metrics of logistic regression and a neural network applied to a TF-IDF representation of the documents. It should also include a least two experiments which experiment either with:
-- the size of the neural network
-- the activation functions (e.g. relu or sigmoid)
-- filtering of the word prior to creating to word counts or tf-idf (e.g. only include nouns or lowercase)
-- document representation (e.g. using raw word frequencies vs. using term frequencies)
-- or similar experimentation
-
-You should at least report the accuracy but are free to report other measures such as AUC, sensitivity and specificity. 
+This should include a table of performance metrics of different models. The performance metrics should at least include accuracy and F1-score.
  -->
 
 ## Project Organization
 The organization of the project is as follows:
 
 <!-- 
-Correct this to reflect changes which you might have made
+Correct this to reflect changes
 -->
 
 ```
@@ -44,10 +37,12 @@ Correct this to reflect changes which you might have made
 
 
 ## Running the code
-You can run the reproduce all the experiment by cloning the GitHub repository and running the following:
+You can run the reproduce all the experiments by cloning the GitHub repository and running the following:
 
-<!-- Fill out to match, this code should run all the experiemnts in the performance section and print the performances. It might be preferable to set a seed to ensure reproducibility. -->
+<!-- 
+Update the code below such that it runs all the experiments in the performance section and print the performances. It might be preferable to set a seed to ensure reproducibility.
+-->
 ```
-pip install -r requirement.txt
-python classification/main.py
+pip install -r requirements.txt
+python ner/main.py --epochs 10 --gensim_embedding glove-wiki-gigaword-50
 ```

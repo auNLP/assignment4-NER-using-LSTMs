@@ -1,17 +1,40 @@
 
 
-# Assignment 2: Sentiment Classification
-This is the second assignment, where the goal is to perform classification using logistic regression and neural networks based upon bag-of-words representations.
+# Assignment 3: Named entity recognition using LSTMs
+This is the third assignment, where the goal is to use LSTMs and word embeddings for detecting entities in unstructured texts.
 
-You will need to submit
 
-- [ ] A logistic regression class
+You are given:
+- A trainable LSTM model using word embeddings. For classifying the entities of an input text.
+- 
+
+You will need to:
+
+- [ ] A `prepare_batch` function, which prepares a batch of inputs for the LSTM. *Hint* examine the starter code from class 8. An outline for this function is present in `data.py`. If this takes a long time you can always save the processed dataset and read it in.
+- [ ] Train an LSTM model trained for English NER using the conllpp dataset. This should include three experiments
+  - [ ] One comparing the effect of the word embedding size, you can see available word embedding on gensim [here](https://github.com/RaRe-Technologies/gensim-data).
+  - [ ] And two others which you select yourself, some ideas could be:
+    - Compare the effect of the hidden layers size of the LSTM
+    - Compare a bidirectional LSTM with your unidirectional LSTM (You can do this by setting the `bidirectional=True`)
+    - Compare the effect of different word embeddings of similar size (e.g. trained on different domains)
+    - Compare the `nn.RNN` as opposed to the `nn.LSTM` block
+    - Compare the effect of different optimizers
+    - ...
+  - [ ] Your training loop should periodically be applied to the validation set. If the model performs better save it. You can save the model using `torch.save` and load it using `torch.load`.
+    - [ ] Early stopping: If the model haven't improved in over N epochs (e.g. 10 epochs), stop the training. 
+  - [ ] Using the best performing model calculate the (micro) F1 score and accuracy of the model on the test set. Feel free to use the sklearn implementation of the [F1](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html) score and accuracy.
+- OPTIONAL:
+  - [ ] It is quite normal to use more than one embedding at the same time (by concatenating them). Does this increase your performance?
+  - [ ] Train an LSTM model trained for sentiment classification. Here you will need to modify the existing LSTM a good idea is to start of by examining the documentation for the LSTM module. Here you can use the `load_sst2` function supplied. I have created an outline for how this would work in the `SentenceLSTM` in `LSTM.py`.
+
+
+
 
 
 Given the form of the tests it should be on the form:
 ```
 # initialize the model
-mdl = Logistic(input_features=10)
+mdl = LstmModel(output_features=10)
 
 # fit the model to the data
 mdl.fit(X, y)
@@ -19,66 +42,15 @@ mdl.fit(X, y)
 # predict using the trained model:
 y_hat = mdl.predict(X)
 ```
-
-The logistic regression should be implemented in pytorch thus you naturally can not use the [logistic regression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html) implementation from scikit-learn.
-
-*Note*: The input features can be inferred when fitting feel free to adapt the function accordingly. Furthermore, you might wish the `fit` to take additional parameters such as learning rate and the number of epochs. 
-
-
-- [ ] A neural network class
-
-Given the form of the tests it should be on the form:
-
-```py
-# initialize the model
-mdl = NeuralNet()
-
-# fit the model to the data
-mdl.fit(X, y)
-
-# predict using the trained model:
-y_hat = mdl.predict(X)
-```
-
-*Note*: it might be convenient to make the `Logistic` class a special case of the neural network class. Similar you might want to add arguments to the iniitalization of the neural network. Do note that you would then need to fix the test as well.
-
-- [ ] Create function which for a list of tokenized texts (`List[List[str]]`) creates a TF-IDF representation of the documents.
-
-The function could look something like this:
-```py
-def tfidf(texts: list, df: Optional[dict]=None) -> List[dict]:
-    """
-    takes in a list of tokenized texts and returns a list of dictionaries
-
-    args:
-        df (dict): Document frequencies, defaults to None, in which case it is estimated from the texts.
-    """
-```
-
-You will have to implement the TF-IDF calculations yourself. For instance, you **can't use** the [tf-idf vectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) from scikit-learn. 
-
-- [ ] Apply the function to the SST2 dataset to create a TF-IDF representation of the document.
-Do note that document frequencies should be estimated on the train set as otherwise, your test data will influence your training samples leading to inflated performance scores.
-Feel free to use the preimplemented `load_sst2` function in `data.py`
-
-
-- [ ] Using this TF-IDF representation fit a both the logistic regression and the neural network model and test the performance on the test set
-When turning the TF-IDF dictionaries into vectors for your model I recommend using the [dict vectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.DictVectorizer.html) for scikit-learn.
-
-*Note* that the size of the neural network is unspecified. However, it can't be the equivalent to logistic regression, i.e. it will have to contain at least 2 linear layers.
-
-- [ ] Make at least two experiments which experiment either with:
-- the size of the neural network
-- the activation functions (e.g. relu or sigmoid)
-- filtering of the word prior to creating to word counts or TF-IDF (e.g. only include nouns or lowercase)
-- document representation (e.g. using raw word frequencies vs. using term frequencies)
-- or similar experimentation
-
-Lastly, 
-  - [ ] all functions should include documentation such that the code is readable, though it can be kept minimal
-  - [ ] and you should fill out the readme containing a summary of your solution no longer than an abstract, a performance table and guide on how to reproduce the results.
 
 *Note* that, naturally, the pre-implemented tests should pass and that you are welcome to add more tests. Please also tick off the boxes if you feel you have completed the task.
+
+
+## Tests
+text -> token_idx
+token_idx -> embedding
+  Init lstm works
+
 
 
 ## Project Organization
@@ -90,26 +62,24 @@ The organization of the project is as follows
 ├── .github            
 │   └── workflows          <- workflows to automatically run when code is pushed
 │   │    └── pytest.yml    <- A workflow which runs pytests upon push
-├── classification         <- The main folder for scripts
+├── ner                    <- The main folder for scripts
 │   ├── tests              <- The pytest test suite
 │   │   └── ...
 |   └── ...
 ├── .gitignore             <- A list of files not uploaded to git
-└── requirement.txt        <- A requirements file of the required packages.
+└── requirements.txt       <- A requirements file of the required packages.
 ```
 
 
 ## Intended learning goals
-- Being able to work with vector representation of a document such as tf-idf
-  - and being able to transform a text to such representation
-- Being able to implement a neural networks and a simple logistic regression using pytorch
-- Being able to make meaningful experiments which influence the performance of the model
+- Being able to work with recurrent layers in PyTorch
+- An understanding of named entity recognition, an essential task in language processing
+- Being able to make meaningful experiments that influence the performance of the model
 
 
 ## Packages which might be useful
 This includes a few additional packages which you might find useful: 
 
-- [wasabi](https://pypi.org/project/wasabi/) is a package which allows you to create and write markdown tables which might be especially nice when creating the performance table
 - Recall from the workshop that argument can be parsed using [argparse](https://docs.python.org/3/library/argparse.html)
 
 
