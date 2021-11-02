@@ -15,7 +15,7 @@ from gensim.models.keyedvectors import KeyedVectors
 from torch import nn
 import random
 
-def load_conllpp() -> DatasetDict:
+def load_data() -> DatasetDict:
     """Load the conllpp dataset.
 
     Returns:

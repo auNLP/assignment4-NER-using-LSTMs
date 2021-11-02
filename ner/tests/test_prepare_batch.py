@@ -1,7 +1,7 @@
-from ner.data import load_conllpp, prepare_batch, load_data
+from ner.data import prepare_batch, load_data
 
 def create_tags_to_ids():
-    dataset = load_conllpp()()
+    dataset = load_data()
     tags = dataset["train"].features["ner_tags"].feature.names
     tags_to_ids = {tag: i for i, tag in enumerate(tags)}
     return tags_to_ids

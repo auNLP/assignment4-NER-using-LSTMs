@@ -4,8 +4,8 @@ import random
 
 import gensim.downloader as api
 
-from data import batch, gensim_to_torch_embedding, load_data
-from LSTM import TokenLSTM
+from ner.data import batch, gensim_to_torch_embedding, load_data
+from ner.LSTM import TokenLSTM
 
 
 def main(gensim_embedding: str, batch_size: int, epochs: int, learning_rate: float, patience: int=10):
