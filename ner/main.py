@@ -31,7 +31,8 @@ def main(gensim_embedding: str, batch_size: int, epochs: int, learning_rate: flo
     batches_tokens = batch(train["tokens"], batch_size)
     batches_tags = batch(train["ner_tags"], batch_size)
 
-    # Create model
+    # Initialize the model
+    # Initialize optimizer
 
     # Train model (I suggest writing a function for this)
         ## for each epoch
