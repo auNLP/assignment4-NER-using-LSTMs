@@ -40,8 +40,9 @@ Correct this to reflect changes
 You can run the reproduce all the experiments by cloning the GitHub repository and running the following:
 
 <!-- 
-Update the code below such that it runs all the experiments in the performance section and print the performances. It might be preferable to set a seed to ensure reproducibility.
+Update the code below such that it runs all the experiments in the performance section and print the performances.
 -->
+
 ```
 pip install -r requirements.txt
 python ner/main.py --epochs 10 --gensim_embedding glove-wiki-gigaword-50

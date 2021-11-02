@@ -23,34 +23,13 @@ You will need to:
   - [ ] Your training loop should periodically be applied to the validation set. If the model performs better save it. You can save the model using `torch.save` and load it using `torch.load`.
     - [ ] Early stopping: If the model haven't improved in over N epochs (e.g. 10 epochs), stop the training. 
   - [ ] Using the best performing model calculate the (micro) F1 score and accuracy of the model on the test set. Feel free to use the sklearn implementation of the [F1](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html) score and accuracy.
+  - [ ] Fill out the readme
 - OPTIONAL:
   - [ ] It is quite normal to use more than one embedding at the same time (by concatenating them). Does this increase your performance?
   - [ ] Train an LSTM model trained for sentiment classification. Here you will need to modify the existing LSTM a good idea is to start of by examining the documentation for the LSTM module. Here you can use the `load_sst2` function supplied. I have created an outline for how this would work in the `SentenceLSTM` in `LSTM.py`.
 
 
-
-
-
-Given the form of the tests it should be on the form:
-```
-# initialize the model
-mdl = LstmModel(output_features=10)
-
-# fit the model to the data
-mdl.fit(X, y)
-
-# predict using the trained model:
-y_hat = mdl.predict(X)
-```
-
-*Note* that, naturally, the pre-implemented tests should pass and that you are welcome to add more tests. Please also tick off the boxes if you feel you have completed the task.
-
-
-## Tests
-text -> token_idx
-token_idx -> embedding
-  Init lstm works
-
+*Note*: Naturally, the pre-implemented tests should pass and that you are welcome to add more tests. Please also tick off the boxes if you have completed the task.
 
 
 ## Project Organization
@@ -72,15 +51,10 @@ The organization of the project is as follows
 
 
 ## Intended learning goals
-- Being able to work with recurrent layers in PyTorch
-- An understanding of named entity recognition, an essential task in language processing
-- Being able to make meaningful experiments that influence the performance of the model
-
-
-## Packages which might be useful
-This includes a few additional packages which you might find useful: 
-
-- Recall from the workshop that argument can be parsed using [argparse](https://docs.python.org/3/library/argparse.html)
+- Being able to work with recurrent layers using PyTorch.
+- Understanding of named entity recognition including the structure of its labels and how a model could be trained.
+- Being able to conduct meaningful experiments that influence the performance of the model.
+- Being able to implement a simple version of early stopping.
 
 
 ## FAQ
