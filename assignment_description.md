@@ -13,7 +13,7 @@ You will need to:
 - [ ] A `prepare_batch` function, which prepares a batch of inputs for the LSTM. *Hint* examine the starter code from class 8. An outline for this function is present in `data.py`. If this takes a long time you can always save the processed dataset and read it in.
 - [ ] Train an LSTM model trained for English NER using the conllpp dataset. This should include three experiments
   - [ ] One comparing the effect of the word embedding size, you can see available word embedding on gensim [here](https://github.com/RaRe-Technologies/gensim-data).
-  - [ ] And two others which you select yourself, some ideas could be:
+  - [ ] And two others which you select yourself, some ideas could be:
     - Compare the effect of the hidden layers size of the LSTM
     - Compare a bidirectional LSTM with your unidirectional LSTM (You can do this by setting the `bidirectional=True`)
     - Compare the effect of different word embeddings of similar size (e.g. trained on different domains)
