@@ -4,7 +4,9 @@ In this assignment, the goal  is to use LSTMs and word embeddings to detect name
 
 This assignment is a bit larger than what you have worked on already and might take some time - both in terms of coding but also in terms of training and experimenting with the LSTM models.
 
-I have also included a directory for what is called *unit testing* -  a process of checking code to make sure that it's working as expected. The pre-implemented tests should pass and that you are welcome to add more tests. Please also tick off the boxes if you have completed the task by putting an X in the box in the markdown for this description.
+I have also included a directory for what is called *unit testing* -  a process of checking code to make sure that it's working as expected. The pre-implemented tests should pass and that you are welcome to add more tests. You can read more here about [testing](https://realpython.com/python-testing/) and [Github workflows](https://docs.github.com/en/actions/using-workflows/about-workflows).
+
+Please also tick off the boxes if you have completed the task by putting an X in the box in the markdown for this description.
 
 ## Assignment tasks
 
@@ -50,6 +52,8 @@ You will need to:
 <br /> 
 <details>
   <summary> Pytest: How do I test the code and run the test suite?</summary>
+
+The tests should run automatically with you push to Github. However, you can also run tests manually.
 
 To run the test suite (pytests) you will need to install the required dependencies. This can be done using 
 
